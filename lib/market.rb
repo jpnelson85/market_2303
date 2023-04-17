@@ -1,5 +1,6 @@
 class Market
-  attr_reader
+  attr_reader :name,
+              :vendors
 
   def initialize(name)
     @name = name
@@ -11,4 +12,8 @@ class Market
   end
 
   def vendor_names
+    @vendors.map do |vendor|
+      vendor.name
+    end
+  end
 end
