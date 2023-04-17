@@ -22,4 +22,12 @@ class Market
       vendor.inventory.include?(item)
     end
   end
+
+  def sorted_item_list
+    @vendors.flat_map do |vendor|
+      item_list = vendor.inventory.keys
+    end.sort
+  end
+
+  def total_inventory
 end
