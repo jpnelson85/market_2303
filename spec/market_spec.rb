@@ -95,7 +95,10 @@ RSpec.describe Market do
     market.add_vendor(vendor1)    
     market.add_vendor(vendor2)    
     market.add_vendor(vendor3)
-    expect(market.total_inventory).to eq({item1 => 100, item2 => 7, item3 => 25, item4 => 50})
+    expect(market.total_inventory).to eq({item1 => {quantity: 100, vendors: [vendor1, vendor3]},
+                                          item2 => {quantity: 7, vendors: [vendor1]},
+                                          item3 => {quantity: 25, vendors: [vendor2]},
+                                          item4 => {quantity: 50, vendors: [vendor2]}})
   end
 
   it 'overstocked items method' do
