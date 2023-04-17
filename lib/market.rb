@@ -35,7 +35,7 @@ class Market
   def total_inventory
     total_inventory = Hash.new {|hash,key| hash[key] = {quantity: 0}}
     @vendors.map do |vendor|
-      vendor.inventory.each do |item, quantity|
+      vendor.inventory.map do |item, quantity|
         total_inventory[item] if !total_inventory.key?(item)
         total_inventory[item][:quantity] += vendor.check_stock(item)
         total_inventory[item][:vendors] = vendors_that_sell(item)
@@ -46,7 +46,7 @@ class Market
 
   def overstocked_items
     overstocked = []
-    total_inventory.map do |item, item_info|
+    total_inventory.each do |item, item_info|
       if (item_info[:quantity] > 50) && (item_info[:vendors].count > 1)
         overstocked << item
       end
