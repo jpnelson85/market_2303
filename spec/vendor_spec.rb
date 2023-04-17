@@ -31,7 +31,6 @@ RSpec.describe Vendor do
   end
 
   it 'potential revenue method' do
-    market = Market.new("South Pearl Street Farmers Market")
     vendor1 = Vendor.new("Rocky Mountain Fresh")
     vendor2 = Vendor.new("Ba-Nom-a-Nom") 
     vendor3 = Vendor.new("Palisade Peach Shack")  
@@ -43,11 +42,9 @@ RSpec.describe Vendor do
     vendor1.stock(item2, 7)    
     vendor2.stock(item4, 50)    
     vendor2.stock(item3, 25)
-    vendor3.stock(item1, 65)  
-    market.add_vendor(vendor1)    
-    market.add_vendor(vendor2)    
-    market.add_vendor(vendor3)
-    expect(market.vendors_that_sell(item1)).to eq([vendor1, vendor3])
-    expect(market.vendors_that_sell(item4)).to eq([vendor2])
+    vendor3.stock(item1, 65)
+    expect(vendor1.potential_revenue).to eq(29.75)
+    expect(vendor2.potential_revenue).to eq(345.00)
+    expect(vendor3.potential_revenue).to eq(48.75)
   end
 end
